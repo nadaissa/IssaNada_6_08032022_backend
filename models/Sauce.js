@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const sauceSchema = mongoose.Schema({
     //tous ces champs sont à faire selon les infos données par piiquante (ici exp cours)
-    _id: {type: String, required: true},
     title: { type: String, required: true},
     description: { type: String, required: true },
     imageUrl: { type: String, required: true },
