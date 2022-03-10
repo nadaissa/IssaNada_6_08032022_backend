@@ -1,17 +1,19 @@
 const express = require('express');
 const router = express.Router();
+
 const saucesCtrl = require("../controllers/sauces");
+const auth = require('../middleware/auth');
 
 //exemple du cours à adapter aux sauces
-router.get('/' + '', saucesCtrl.getAllSauces);
+router.get('/', auth, saucesCtrl.getAllSauces);
 
-router.get('/:id', saucesCtrl.getOneSauce);
+router.get('/:id', auth, saucesCtrl.getOneSauce);
 
-router.post('/', saucesCtrl.createSauce);
+router.post('/', auth, saucesCtrl.createSauce);
 
-router.put('/:id', saucesCtrl.modifySauce);
+router.put('/:id', auth, saucesCtrl.modifySauce);
 
-router.delete('/:id', saucesCtrl.deleteSauce);
+router.delete('/:id', auth, saucesCtrl.deleteSauce);
 
 
 
