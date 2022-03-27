@@ -11,7 +11,7 @@ const sauceSchema = mongoose.Schema({
     likes: { type: Number, required: true },
     dislikes: { type: Number, required: true },
     usersLiked: { type: [String<userId>], required: true }, //forme à vérifier
-    usersDisliked: { type: [String<userId>], required: true } //forme à vérifier
+    usersDisliked: { type: [String<userId>], required: true }, //forme à vérifier
 
 });
 
