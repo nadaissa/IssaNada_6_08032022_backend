@@ -1,7 +1,8 @@
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const cryptojs = require('crypto-js');
+//const cryptJs = require('crypto-js');
+
 
 const User = require('../models/User');
 
@@ -19,9 +20,8 @@ exports.singup = (req, res, next) =>{
     .catch((error) => res.status(500).json({ error }));
 };
 
-/*change once crypto installed: 
-exports.signup = (req, res, next) => {
-    const emailCrypt = cryptojs.SHA256(req.body.email, process.env.CRYPTOJS_SECRET_TOKEN).toString();
+/*exports.signup = (req, res, next) => {
+    const emailCrypt = cryptJs.SHA256(req.body.email, process.env.CRYPTOJS_SECRET_TOKEN).toString();
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
         const user = new User({
@@ -33,8 +33,8 @@ exports.signup = (req, res, next) => {
             .catch((error) => res.status(400).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
-};
-*/
+};*/
+
 
 exports.login = (req, res, next) =>{
     User.findOne({ email: req.body.email })
@@ -61,9 +61,8 @@ exports.login = (req, res, next) =>{
     .catch((error) => res.status(500).json({ error }));
 };
 
-/* change once crypto installed:
-exports.login = (req, res, next) => {
-    const emailCrypt = cryptojs.SHA256(req.body.email, process.env.CRYPTOJS_SECRET_TOKEN).toString();
+/*exports.login = (req, res, next) => {
+    const emailCrypt = cryptJs.SHA256(req.body.email, process.env.CRYPTOJS_SECRET_TOKEN).toString();
     User.findOne({ email : emailCrypt })
         .then((user) => {
             if(!user) {
@@ -90,5 +89,4 @@ exports.login = (req, res, next) => {
             }
         })
         .catch(error => res.status(500).json({ error }));
-};
-*/
+};*/

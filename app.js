@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const helmet = require('helmet');
 const path = require('path');
 
+
+
 const saucesRoutes = require("./routes/sauces")
 const userRoutes = require("./routes/user");
 
@@ -16,8 +18,8 @@ mongoose.connect('mongodb+srv://rosario_j:Mycluster123@cluster0.kbvyu.mongodb.ne
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-const app = express();
 
+const app = express();
 app.use(helmet());
 
 //ligns for the CROS error => to give the app access to the API
