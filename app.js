@@ -2,7 +2,7 @@ require('dotenv').config();
 //console.log(process.env);
 const express = require('express');
 const mongoose = require("mongoose");
-//add const = helmet require('helmet'); once helmet is active
+const helmet = require('helmet');
 const path = require('path');
 
 const saucesRoutes = require("./routes/sauces")
@@ -18,7 +18,7 @@ mongoose.connect('mongodb+srv://rosario_j:Mycluster123@cluster0.kbvyu.mongodb.ne
 
 const app = express();
 
-//add app.use(helmet()); once helmet is active
+app.use(helmet());
 
 //ligns for the CROS error => to give the app access to the API
 app.use((req, res, next) => {
