@@ -1,4 +1,5 @@
-//add require('dotenv').config(); once dovtenv is active
+require('dotenv').config();
+//console.log(process.env);
 const express = require('express');
 const mongoose = require("mongoose");
 //add const = helmet require('helmet'); once helmet is active

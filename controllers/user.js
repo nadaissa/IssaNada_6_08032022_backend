@@ -1,10 +1,8 @@
+require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-/* add once crypto and dotenv installed
-
+/* add once crypto installed
 const cryptojs = require('crypto-js');
-require('dotenv').config();
-
 */
 
 const User = require('../models/User');

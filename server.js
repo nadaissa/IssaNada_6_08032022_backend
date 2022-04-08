@@ -1,4 +1,4 @@
-//add require('dotenv').config(); once dovtenv is active
+require('dotenv').config();
 const http = require('http');
 const app = require('./app');
 
