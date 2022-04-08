@@ -1,6 +1,7 @@
+//add require('dotenv').config(); once dovtenv is active
 const express = require('express');
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+//add const = helmet require('helmet'); once helmet is active
 const path = require('path');
 
 const saucesRoutes = require("./routes/sauces")
