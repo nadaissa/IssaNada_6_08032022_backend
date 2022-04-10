@@ -2,14 +2,11 @@ const express = require('express');
 const router = express.Router();
 const userCtrl = require('../controllers/user');
 
-/*
-add once created in middleware (change names)
+const passCheck = require('../middleware/passCheck');
+const emailCheck = require('../middleware/emailCheck');
 
-const checkPassword = require('../middleware/check-password');
-const checkEmail = require('../middleware/check-email');
 
-*/
-router.post('/signup', /*add: checkEmail and checkPassword const here (changed names)*/ userCtrl.singup);
+router.post('/signup', emailCheck, passCheck, userCtrl.signup);
 router.post('/login', userCtrl.login);
 
 

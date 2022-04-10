@@ -1,3 +1,4 @@
+//imports
 require('dotenv').config();
 //console.log(process.env);
 const express = require('express');
@@ -5,20 +6,20 @@ const mongoose = require("mongoose");
 const helmet = require('helmet');
 const path = require('path');
 
+//console.log('access', process.env.CRYPTOJS_SECRET_TOKEN);
 
 
 const saucesRoutes = require("./routes/sauces")
 const userRoutes = require("./routes/user");
 
 
-mongoose.connect('mongodb+srv://rosario_j:Mycluster123@cluster0.kbvyu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-//`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-
+//Instantiate server app
 const app = express();
 app.use(helmet());
 
