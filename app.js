@@ -30,6 +30,7 @@ app.use((req, res, next) => {
   next();
   });
 
+//JSON parse method (express version >4.16 so no need to bodyparser)
 app.use(express.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
