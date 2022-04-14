@@ -6,8 +6,6 @@ const mongoose = require("mongoose");
 const helmet = require('helmet');
 const path = require('path');
 
-//console.log('access', process.env.CRYPTOJS_SECRET_TOKEN);
-
 
 const saucesRoutes = require("./routes/sauces")
 const userRoutes = require("./routes/user");
