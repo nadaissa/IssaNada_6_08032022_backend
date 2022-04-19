@@ -63,29 +63,75 @@ exports.getAllSauces = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
     };
 
-//put exports for liking the Sauce here
-/*exports.likeSauce = (req, res, next) => {
-    if (req.body.like === 1) {  
-        Sauces.updateOne( {_id:req.params.id}, { $push: { usersLiked: req.body.userId }, $inc: { likes: +1 } })
-            .then(() => res.status(200).json({ message: 'Vous aimez cette sauce !'}))
-            .catch(error => res.status(400).json({ error }));
-    } else if (req.body.like === -1) {  
-        Sauces.updateOne( {_id:req.params.id}, { $push: { usersDisliked: req.body.userId }, $inc: { dislikes: +1 } })
-            .then(() => res.status(200).json({ message: "Vous n'aimez pas cette sauce!"}))
-            .catch(error => res.status(400).json({ error }));
-    } else {  
-        Sauces.findOne({ _id: req.params.id })
-            .then(sauce => {
-            if (sauce.usersLiked.includes(req.body.userId)) {
-                Sauces.updateOne( {_id:req.params.id}, { $pull: { usersLiked: req.body.userId }, $inc: { likes: -1 } })
-                .then(() => res.status(200).json({ message: 'Like supprimé !'}))
-                .catch(error => res.status(400).json({ error }))
-            } else if (sauce.usersDisliked.includes(req.body.userId)) {
-                Sauces.updateOne( {_id:req.params.id}, { $pull: { usersDisliked: req.body.userId }, $inc: { dislikes: -1 } })
-                .then(() => res.status(200).json({ message: 'Dislike supprimé !'}))
-                .catch(error => res.status(400).json({ error }))
-            }
-            })
-            .catch(error => res.status(400).json({ error }));
-    }
-}; */
+exports.likeSauces = (req, res, next) => {
+      const like = req.body.like;
+      const userId = req.body.userId;
+  
+      // find the Sauce with id
+      Sauce.findOne({ _id: req.params.id })
+          .then(sauce => {
+              //verify if user has already liked (by refering to the ID in the usersLiked array)
+              let userLike = sauce.usersLiked.find(id => id === userId);
+              //verify if user has already disliked (also by userId reference)
+              let userDislike = sauce.usersDisliked.find(id => id === userId);
+  
+              switch (like) {
+                  // first case: like = 1, user like
+                  case 1 :
+                      // if the user didn't chose like yet we add one like with the correspondant userId 
+                      if (!userLike) {
+                          sauce.likes += 1;
+                          sauce.usersLiked.push(userId);
+                      } else {
+                          // if the user did already like we send an error
+                          throw new Error('Vous avez le droit à un seul like :)');
+                      } 
+                       // if the user did already a dislike we send an error message
+                      if (userDislike) {
+                          throw new Error('Vous devez annuler votre dislike!');
+                      }
+                  break;
+  
+                  // second case: like = 0, user cancel like
+                  case 0 :
+                       // if the user did already like we delete one like and the userId from array 
+                      
+                      if (userLike) {
+                          sauce.likes -= 1;
+                          sauce.usersLiked = sauce.usersLiked.filter(id => id !== userId);
+                          //filter is here to keep the other users likes
+                      }
+                      // if the user did already a dislike we delete the dislike and the userId from array
+                      else {
+                        
+                          if (userDislike) {
+                          sauce.dislikes -= 1;
+                          sauce.usersDisliked = sauce.usersDisliked.filter(id => id !== userId);
+                          //filter is here to keep the other users dislikes
+                          }   
+                      }
+                  break;
+  
+                  // third case: like = -1, user dislike
+                  case -1 :
+                      // if the user didn't chose dislike yet we add one dislike with the correspondant userId                       
+                      if (!userDislike) {
+                          sauce.dislikes += 1;
+                          sauce.usersDisliked.push(userId);
+                      } else {
+                          // if the user already disliked we send an error message
+                          throw new Error('Vous avez le droit à un seul dislike :)');
+                      } 
+                      // if the user already liked we send an error message
+                      if (userLike) {
+                          throw new Error('Vous devez annuler votre like!');
+                      }
+              }
+              // save the sauce with likes modifications
+              sauce.save()
+                  .then(() => res.status(201).json({ message: 'votre avis est enregistré !' }))
+                  .catch(error => res.status(400).json({ error }));
+  
+              })
+          .catch(error => res.status(500).json({ error : error.message }));
+  };
