@@ -1,8 +1,9 @@
-//imports
-require('dotenv').config();
+//general imports
+require('dotenv').config(); 
 const http = require('http');
 const app = require('./app');
 
+//port function
 const normalizePort = val => {
     const port = parseInt(val, 10);
     if (isNaN(port)) {
@@ -17,6 +18,7 @@ const normalizePort = val => {
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+//different errors handling function
 const errorHandler = error => {
     if (error.syscall !== 'listen') {
         throw error;
@@ -37,8 +39,10 @@ const errorHandler = error => {
     }
 };
 
+//including the app file parameters in the server
 const server = http.createServer(app);
 
+//defining the channeling for server execution
 server.on('error', errorHandler);
 server.on('listening', () => {
     const address = server.address();

@@ -1,5 +1,7 @@
+//general imports
 const mongoose = require("mongoose");
 
+//sauce model creation using mongoose schema class
 const sauceSchema = mongoose.Schema({
     userId: { type: String, required: true },
     name: { type: String, required: true },
@@ -15,4 +17,5 @@ const sauceSchema = mongoose.Schema({
 
 });
 
+//sauce model export
 module.exports = mongoose.model('Sauce', sauceSchema);

@@ -1,7 +1,12 @@
+//general imports
 require('dotenv').config();
 const Sauce = require("../models/Sauce")
+//file system access to be able to make adding and delete operations for example
 const fs = require('fs');
 
+
+//functions for sauce handeling the identification by the userId token is imposed for deleting and modifying
+//sauce creation function export to be used in routes file
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
     const sauce = new Sauce({
@@ -13,6 +18,8 @@ exports.createSauce = (req, res, next) => {
       .catch(error => res.status(400).json({ error }));
     };
 
+
+//sauce modification function export to be used in routes file
 exports.modifySauce = (req, res, next) => {
    Sauce.findOne({ _id: req.params.id })
    .then(sauce =>{
@@ -33,6 +40,7 @@ exports.modifySauce = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));  
   };
 
+//sauce deleting function export to be used in routes file
 exports.deleteSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
     .then(sauce => {
@@ -50,19 +58,23 @@ exports.deleteSauce = (req, res, next) => {
     })
     .catch((error) => res.status(500).json({ error }));
   };
-  
+
+//sauce search function export to be used in routes file
 exports.getOneSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
       .then(sauce => res.status(200).json(sauce))
       .catch(error => res.status(404).json({ error }));
   };
 
+
+//all sauces search function export to be used in routes file
 exports.getAllSauces = (req, res, next) => {
     Sauce.find()
         .then(sauce => res.status(200).json(sauce))
         .catch(error => res.status(400).json({ error }));
     };
 
+//liking and disliking function export to be used in routes file
 exports.likeSauces = (req, res, next) => {
       const like = req.body.like;
       const userId = req.body.userId;

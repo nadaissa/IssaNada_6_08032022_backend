@@ -1,16 +1,17 @@
-//imports
+//general imports
 require('dotenv').config();
-//console.log(process.env);
 const express = require('express');
 const mongoose = require("mongoose");
 const helmet = require('helmet');
+
+//path for system files
 const path = require('path');
 
-
+//router imports
 const saucesRoutes = require("./routes/sauces");
 const userRoutes = require("./routes/user");
 
-
+//database connect to mongoose module
 mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -33,11 +34,14 @@ app.use((req, res, next) => {
 //JSON parse method (express version >4.16 so no need to bodyparser)
 app.use(express.json());
 
-app.use('/images', express.static(path.join(__dirname, 'images')));
+//indication to express for static handling of images ressources 
+app.use('/images', express.static(path.join(__dirname, 'images'))); //dirname is the target folder
+
+//api routes
 app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);
 
 
-
+//app export
 module.exports = app;
 

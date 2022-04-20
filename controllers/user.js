@@ -1,10 +1,12 @@
+//general imports
 require('dotenv').config();
+//bcrypt is used to crypt passwords
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
-
 const User = require('../models/User');
 
+
+//signup function export to be used in routes file
 exports.signup = (req, res, next) => {
    
     bcrypt.hash(req.body.password, 10)
@@ -20,6 +22,7 @@ exports.signup = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
+//login function export to be used in routes file
 exports.login = (req, res, next) => {
   
     User.findOne({ email : req.body.email })
