@@ -88,7 +88,7 @@ exports.likeSauces = (req, res, next) => {
               let userDislike = sauce.usersDisliked.find(id => id === userId);
   
               switch (like) {
-                  // first case: like = 1, user like
+                  // first case: like = 1, user likes
                   case 1 :
                       // if the user didn't chose like yet we add one like with the correspondant userId 
                       if (!userLike) {
