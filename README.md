@@ -5,15 +5,22 @@
 
 ## Project targets
 :outbox_tray: Use CRUD operation in a secure manner :white_check_mark:
+
 :bookmark_tabs: Implement a logical data model :white_check_mark:
+
 :key: Secure data storing :white_check_mark:
 
 ## Expected operations
 :busts_in_silhouette: Create a user :white_check_mark:
+
 :unlock: Login with user ID :white_check_mark:
+
 :pencil2: Create a Sauce :white_check_mark:
+
 :pencil: Modify a Sauce (by creator :lock_with_ink_pen:) :white_check_mark:
+
 :x: Delete a Sauce (by creator:lock_with_ink_pen:) :white_check_mark:
+
 :+1::-1: Like OR dislike a Sauce :white_check_mark:
 
 ## User guide: :clipboard:
@@ -21,7 +28,9 @@
 ### Install node js (16.10.0 or 12.20.2 or 14.15.5 ) [to be compatible with the frontend angular cli version 13.2.4]
 ### From withing the back-end folder provided 
 1- Create an "images" file
+
 2- Create an ".env" file and define the environnement variables:
+
 - PORT= ""
 - DB_USERNAME = "your database username"
 - DB_PASSWORD = "your database password"
@@ -30,13 +39,17 @@
 - SECRET_TOKEN = "your database password generated secret token"
 
 3- Run  `npm install`
+
 4- Run `node server` or `nodemon server`
 
 #### Project dependencies:
+
 bcrypt, dotenv, email-validator, express, fs, helmet, jsonwebtoken,mongoose, mongoose-unique-validator, multer, password-validator
 
 ### After cloning the front-end repo (Web-Developper-P6)
+
 Run  `npm install`
+
 Install Angular (cli version 13.2.4)
 
 #### Development server
