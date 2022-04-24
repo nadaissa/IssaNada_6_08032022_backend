@@ -34,7 +34,7 @@ exports.modifySauce = (req, res, next) => {
       .then(() => res.status(200).json({ message: 'Votre sauce est modifiée !'}))
       .catch(error => res.status(400).json({ error }));
     } else {
-      res.status(401).json({ error: "Vous ne pouvez pas modifier cette sauce"})
+      res.status(403).json({ error: "Vous ne pouvez pas modifier cette sauce"})
     }
    }) 
     .catch(error => res.status(500).json({ error }));  
@@ -53,7 +53,7 @@ exports.deleteSauce = (req, res, next) => {
             .catch((error) => res.status(400).json({ error }));
           });
       } else {
-        res.status(401).json({ error: "Vous ne pouvez pas supprimer cette sauce"})
+        res.status(403).json({ error: "Vous ne pouvez pas supprimer cette sauce"})
       }
     })
     .catch((error) => res.status(500).json({ error }));
