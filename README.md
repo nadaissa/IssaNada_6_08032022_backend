@@ -27,9 +27,9 @@
 
 ### Install node js (16.10.0 or 12.20.2 or 14.15.5 ) [to be compatible with the frontend angular cli version 13.2.4]
 ### From withing the back-end folder provided 
-1- Create an "images" file
+1- Inside the main folder create an "images" folder
 
-2- Create an ".env" file and define the environnement variables:
+2- Inside the main folder create an ".env" file and define the environnement variables:
 
 - PORT= ""
 - DB_USERNAME = "your database username"
@@ -48,10 +48,11 @@ bcrypt, dotenv, email-validator, express, fs, helmet, jsonwebtoken,mongoose, mon
 
 ### After cloning the front-end repo (Web-Developper-P6)
 
-Run  `npm install`
+1- Run  `npm install`
 
-Install Angular (cli version 13.2.4)
+2- Install Angular (cli version 13.2.4)
 
+3- Follow these front-end readme file instructions:
 #### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
